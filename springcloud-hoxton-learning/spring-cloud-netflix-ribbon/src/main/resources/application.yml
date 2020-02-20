@@ -1,0 +1,49 @@
+server:
+  port: ${PORT:9100}
+
+spring:
+  application:
+    name: ribbon
+  cloud:
+    loadbalancer:
+      retry:
+        #开启重试机制
+        enabled: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+
+#ribbon指定客户端配置
+eureka-client:
+  ribbon:
+    #指定Ribbon使负载均衡策略,ribbon自带七种负载均衡策略,RoundRobinRule:轮询,RandomRule:随机
+    #RetryRule:重试,WeightedResponseTimeRule:响应时间加权,BestAvailableRule:最小并发请求
+    #AvailabilityFilteringRule:可用过滤,ZoneAvoidanceRule:区域权重
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+
+#ribbon全局配置
+ribbon:
+  eager-load:
+    #是否开启ribbon立即加载,true:开启,false:关闭,默认false
+    enabled: true
+    #指定需要立即加载的服务名,有多个则用逗号隔开
+    clients: eureka-client
+    #处理请求的超时时间,单位ms,默认1000
+    ReadTimeout: 5000
+    #连接建立的超时时长,单位ms,默认1000
+    ConnectTimeout: 5000
+    #切换实例的最大重试次数,不包括首次调用,默认0次
+    MaxAutoRetriesNextServer: 3
+    #对当前实例的最大重试次数,不包括首次调用,默认1次
+    MaxAutoRetries: 1
+    #是否对所有操作请求都进行重试,true:是,false:否,默认false
+    OkToRetryOnAllOperations: true
+    #对指定Http响应码进行重试
+    retryableStatusCodes: 404,500,502
