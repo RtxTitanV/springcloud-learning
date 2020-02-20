@@ -1,0 +1,31 @@
+server:
+  port: ${PORT:8090}
+
+spring:
+  application:
+    name: eureka-client
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
+    #从Eureka服务器获取注册表信息的间隔时间,单位秒,默认30秒
+    registry-fetch-interval-seconds: 20
+    #更新实例信息的变化到Eureka服务端的间隔时间,单位秒,默认30秒
+    instance-info-replication-interval-seconds: 20
+    #初始化实例信息到Eureka服务端的间隔时间,单位秒,默认40秒
+    initial-instance-info-replication-interval-seconds: 30
+    #询问Eureka Server信息变化的时间间隔,单位秒,默认300秒
+    eureka-service-url-poll-interval-seconds: 200
+    #读取Eureka Server的超时时间,单位秒,默认5秒
+    eureka-server-connect-timeout-seconds: 10
+    #连接Eureka Server的超时时间,单位秒,默认8秒
+    eureka-server-read-timeout-seconds: 15
+  instance:
+    #将ip地址注册到Eureka注册中心
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    lease-renewal-interval-in-seconds: 20
+    lease-expiration-duration-in-seconds: 60
