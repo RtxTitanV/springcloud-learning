@@ -46,7 +46,7 @@ ribbon:
     clients: eureka-client
     #处理请求的超时时间,单位ms,默认1000
     ReadTimeout: 5000
-    #连接建立的超时时长,单位ms,默认1000
+    #连接建立的超时时间,单位ms,默认1000
     ConnectTimeout: 5000
     #切换实例的最大重试次数,不包括首次调用,默认0次
     MaxAutoRetriesNextServer: 3
