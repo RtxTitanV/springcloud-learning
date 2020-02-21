@@ -42,7 +42,7 @@ ribbon:
   eager-load:
     #是否开启ribbon立即加载,true:开启,false:关闭,默认false
     enabled: true
-    #指定需要立即加载的服务名,有多个则用逗号隔开
+    #指定需要立即加载的服务名,也就是你需要调用的服务,有多个则用逗号隔开
     clients: eureka-client
     #处理请求的超时时间,单位ms,默认1000
     ReadTimeout: 5000
