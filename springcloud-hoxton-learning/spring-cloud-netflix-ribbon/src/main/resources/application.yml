@@ -39,22 +39,23 @@ eureka-client:
 
 #ribbon全局配置
 ribbon:
+  #处理请求的超时时间,单位ms,默认1000
+  ReadTimeout: 5000
+  #连接建立的超时时间,单位ms,默认1000
+  ConnectTimeout: 5000
+  #切换实例的最大重试次数,不包括首次调用,默认0次
+  MaxAutoRetriesNextServer: 3
+  #对当前实例的最大重试次数,不包括首次调用,默认1次
+  MaxAutoRetries: 1
+  #是否对所有操作请求都进行重试,true:是,false:否,只针对get请求进行重试
+  #设置为true时,如果是put或post等写操作,如果服务器接口不能保证幂等性,会产生不好的结果,所以OkToRetryOnAllOperations设置为true需慎用
+  #默认情况下,get请求无论是连接异常还是读取异常,都会进行重试,非get请求,只有连接异常时,才会进行重试
+  OkToRetryOnAllOperations: true
+  #对指定Http响应码进行重试
+  retryableStatusCodes: 404,500,502
   eager-load:
     #是否开启ribbon立即加载,true:开启,false:关闭,默认false
     enabled: true
     #指定需要立即加载的服务名,也就是你需要调用的服务,有多个则用逗号隔开
     clients: eureka-client
-    #处理请求的超时时间,单位ms,默认1000
-    ReadTimeout: 5000
-    #连接建立的超时时间,单位ms,默认1000
-    ConnectTimeout: 5000
-    #切换实例的最大重试次数,不包括首次调用,默认0次
-    MaxAutoRetriesNextServer: 3
-    #对当前实例的最大重试次数,不包括首次调用,默认1次
-    MaxAutoRetries: 1
-    #是否对所有操作请求都进行重试,true:是,false:否,只针对get请求进行重试
-    #设置为true时,如果是put或post等写操作,如果服务器接口不能保证幂等性,会产生不好的结果,所以OkToRetryOnAllOperations设置为true需慎用
-    #默认情况下,get请求无论是连接异常还是读取异常,都会进行重试,非get请求,只有连接异常时,才会进行重试
-    OkToRetryOnAllOperations: true
-    #对指定Http响应码进行重试
-    retryableStatusCodes: 404,500,502
+
