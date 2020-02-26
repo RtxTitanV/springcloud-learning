@@ -61,6 +61,7 @@ ribbon:
 
 hystrix:
   command:
+    #hystrix command参数全局配置
     default:
       execution:
         timeout:
