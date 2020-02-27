@@ -9,7 +9,7 @@
     <version>1.0.0</version>
 
     <name>spring-cloud-netflix-hystrix</name>
-    <description>xx</description>
+    <description>SpringCloud 断路器Hystrix Hoxton版本</description>
 
     <parent>
         <!-- SpringBoot 起步依赖 -->
