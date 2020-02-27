@@ -7,6 +7,7 @@
     <groupId>com.rtxtitanv</groupId>
     <artifactId>spring-cloud-netflix-hystrix</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
 
     <name>spring-cloud-netflix-hystrix</name>
     <description>SpringCloud 断路器Hystrix Hoxton版本</description>
