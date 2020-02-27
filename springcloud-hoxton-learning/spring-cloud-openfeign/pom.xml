@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>spring-cloud-openfeign</name>
-    <description>spring-cloud-openfeign</description>
+    <description>SpringCloud 声明式服务调用OpenFeign Hoxton版本</description>
 
     <parent>
         <!-- SpringBoot 起步依赖 -->
