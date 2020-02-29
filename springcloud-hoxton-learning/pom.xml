@@ -15,5 +15,9 @@
         <module>spring-cloud-netflix-ribbon</module>
         <module>spring-cloud-openfeign</module>
         <module>spring-cloud-netflix-hystrix</module>
+        <module>spring-cloud-netflix-hystrix-dashboard</module>
+        <module>spring-cloud-netflix-turbine</module>
+        <module>spring-cloud-netflix-hystrix-monitored</module>
+        <module>spring-cloud-openfeign-monitored</module>
     </modules>
 </project>

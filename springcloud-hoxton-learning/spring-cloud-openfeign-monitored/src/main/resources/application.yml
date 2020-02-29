@@ -1,0 +1,126 @@
+server:
+  port: ${PORT:9250}
+  servlet:
+#    #被监控服务都配置相同context-path情况
+#    context-path: /common
+    #被监控服务配置了不同context-path情况
+    context-path: /openfeign
+
+spring:
+  application:
+    name: ${APP_NAME:openfeign-monitored}
+  cloud:
+    loadbalancer:
+      retry:
+        #开启重试机制
+        enabled: true
+
+eureka:
+  client:
+    #服务注册,是否将服务注册到Eureka注册中心,true:注册,false:不注册
+    register-with-eureka: true
+    #服务发现,是否从Eureka注册中心获取注册信息,true:获取,false:不获取
+    fetch-registry: true
+    #配置Eureka注册中心即Eureka服务端的地址,集群地址以,隔开
+    service-url:
+      defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
+  instance:
+    #将ip地址注册到Eureka注册中心
+    prefer-ip-address: true
+    #该服务实例在注册中心的唯一实例ID,${spring.cloud.client.ip-address}获取该服务实例ip
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    #该服务实例向注册中心发送心跳间隔,单位秒,默认30秒
+    lease-renewal-interval-in-seconds: 20
+    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间,单位秒,默认90秒
+    lease-expiration-duration-in-seconds: 60
+    #自定义元数据
+    metadata-map:
+      #用于Turbine聚合监控的集群名
+      cluster: OPENFEIGN
+
+#ribbon指定客户端配置
+eureka-client:
+  ribbon:
+    #指定Ribbon负载均衡策略,ribbon自带七种负载均衡策略,RoundRobinRule:轮询,RandomRule:随机
+    #RetryRule:重试,WeightedResponseTimeRule:响应时间加权,BestAvailableRule:最小并发请求
+    #AvailabilityFilteringRule:可用过滤,ZoneAvoidanceRule:区域权重
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+#ribbon全局配置
+ribbon:
+  #处理请求的超时时间,单位ms,默认1000
+  ReadTimeout: 3000
+  #连接建立的超时时间,单位ms,默认1000
+  ConnectTimeout: 3000
+  #切换实例的最大重试次数,不包括首次调用,默认0次
+  MaxAutoRetriesNextServer: 1
+  #对当前实例的最大重试次数,不包括首次调用,默认1次
+  MaxAutoRetries: 1
+  #是否对所有操作请求都进行重试,true:是,false:否,只针对get请求进行重试
+  #设置为true时,如果是put或post等写操作,如果服务器接口不能保证幂等性,会产生不好的结果,所以OkToRetryOnAllOperations设置为true需慎用
+  #默认情况下,get请求无论是连接异常还是读取异常,都会进行重试,非get请求,只有连接异常时,才会进行重试
+  OkToRetryOnAllOperations: false
+  #对指定Http响应码进行重试
+  retryableStatusCodes: 404,500,502
+  eager-load:
+    #是否开启ribbon立即加载,true:开启,false:关闭,默认false
+    enabled: true
+    #指定需要立即加载的服务名,也就是你需要调用的服务,有多个则用逗号隔开
+    clients: eureka-client
+
+hystrix:
+  command:
+    #hystrix command参数全局配置
+    default:
+      execution:
+        timeout:
+          #是否启用hystrix超时,true:启用,false:不启用
+          enabled: true
+        isolation:
+          thread:
+            #hystrix超时时间,需大于ribbon的超时时间,单位ms
+            #hystrix超时时间需大于(MaxAutoRetries+1)(MaxAutoRetriesNextServer+1)(ConnectTimeout+ReadTimeout)
+            timeoutInMilliseconds: 30000
+
+feign:
+  hystrix:
+    #是否启用hystrix,true:启动,false:停用,默认false
+    enabled: true
+  #GZIP压缩配置,提高通信效率
+  compression:
+    request:
+      #是否启用请求GZIP压缩,true:启用,false:不启用
+      enabled: true
+      #压缩支持的MIME TYPE
+      mime-types: text/xml,application/xml,application/json
+      #压缩数据的最小值
+      min-request-size: 2048
+    response:
+      #是否启用响应GZIP压缩,true:启用,false:不启用
+      enabled: true
+  client:
+    config:
+      #feign全局配置
+      default:
+        #指定日志级别,none:不记录任何日志,basic:仅记录请求方法,URL,响应状态代码以及执行时间(适合生产环境)
+        #headers:在basic基础上,记录请求和响应的header,full:记录请求和响应的header,body和元数据,默认none
+        loggerLevel: basic
+      #feign指定客户端配置,即仅对指定调用的服务生效
+      eureka-client:
+        loggerLevel: full
+
+#设置日志级别
+logging:
+  level:
+    #配置为声明式REST服务调用接口所在包
+    com:
+      rtxtitanv:
+        #这里需要配置为debug,否则feign的日志级别配置不会生效
+        feignclient: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #暴露指定监控端点,'hystrix.stream'为hystrix监控端点,'*'为所有监控端点
+        include: 'hystrix.stream'

@@ -1,0 +1,65 @@
+server:
+  port: ${PORT:1300}
+
+spring:
+  application:
+    name: turbine
+
+eureka:
+  client:
+    #服务注册,是否将服务注册到Eureka注册中心,true:注册,false:不注册
+    register-with-eureka: true
+    #服务发现,是否从Eureka注册中心获取注册信息,true:获取,false:不获取
+    fetch-registry: true
+    #配置Eureka注册中心即Eureka服务端的地址,集群地址以,隔开
+    service-url:
+      defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
+  instance:
+    #将ip地址注册到Eureka注册中心
+    prefer-ip-address: true
+    #该服务实例在注册中心的唯一实例ID,${spring.cloud.client.ip-address}获取该服务实例ip
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    #该服务实例向注册中心发送心跳间隔,单位秒,默认30秒
+    lease-renewal-interval-in-seconds: 20
+    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间,单位秒,默认90秒
+    lease-expiration-duration-in-seconds: 60
+
+##默认集群监控
+#turbine:
+#  #需要聚合监控的服务名称,多个以,号分隔
+#  app-config: hystrix-monitored,openfeign-monitored
+#  aggregator:
+#    #需要聚合监控的集群名称,多个以,隔开,默认default
+#    cluster-config: default
+#  #指定集群表达式名称
+#  cluster-name-expression: new String("default")
+#  #是否以主机名和端口号区分服务,true:是,false:否,
+#  #默认情况下会以host来区分不同的服务,在本机调试的时本机上不同的服务会聚合成一个服务来统计
+#  combine-host-port: true
+#  #被监控服务都配置相同context-path情况,common为配置的context-path
+#  #被监控服务都没配置context-path需省略该配置
+#  #instanceUrlSuffix:  common/actuator/hystrix.stream
+
+#指定集群监控
+turbine:
+  #需要聚合监控的服务名称,多个以,号分隔
+  app-config: hystrix-monitored,openfeign-monitored,hystrix-monitored2,openfeign-monitored2
+  aggregator:
+    #需要聚合监控的集群名称,多个以,隔开,默认default
+    cluster-config: HYSTRIX,OPENFEIGN
+  #指定集群表达式名称
+  cluster-name-expression: metadata['cluster']
+  #是否以主机名和端口号区分服务,true:是,false:否,
+  #默认情况下会以host来区分不同的服务,在本机调试的时本机上不同的服务会聚合成一个服务来统计
+  combine-host-port: true
+#  #被监控服务都没配置context-path需配置为/actuator/hystrix.stream
+#  #被监控服务都配置相同context-path情况需配置为 此处为配置的context-path/actuator/hystrix.stream
+#  instanceUrlSuffix: /actuator/hystrix.stream
+  #被监控服务配置了不同context-path或被监控服务部分配置了context-path
+  #根据context-path进行分组,将配置有相同context-path的服务分为一组
+  instanceUrlSuffix:
+    #相同context-path服务分为的集群对应的instanceUrlSuffix
+    ##如果有部分服务没有配置context-path,对该部分服务分组后无需配置对应的instanceUrlSuffix,为默认值/actuator/hystrix.stream
+    HYSTRIX: hystrix/actuator/hystrix.stream
+    OPENFEIGN: openfeign/actuator/hystrix.stream
+
