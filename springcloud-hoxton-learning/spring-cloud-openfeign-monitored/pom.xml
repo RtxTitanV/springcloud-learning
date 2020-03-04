@@ -60,7 +60,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- SpringRetry 重试策略 起步依赖 -->
+        <!-- SpringRetry 重试框架 起步依赖 -->
         <dependency>
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
