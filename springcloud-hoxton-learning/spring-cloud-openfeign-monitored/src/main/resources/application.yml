@@ -122,5 +122,5 @@ management:
   endpoints:
     web:
       exposure:
-        #暴露指定监控端点,'hystrix.stream'为hystrix监控端点,'*'为所有监控端点
+        #暴露指定监控端点,hystrix.stream为hystrix监控端点,'*'暴露所有监控端点
         include: 'hystrix.stream'
