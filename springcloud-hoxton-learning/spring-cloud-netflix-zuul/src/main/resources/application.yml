@@ -1,0 +1,196 @@
+server:
+  port: ${PORT:1500}
+
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    #服务注册,是否将服务注册到Eureka注册中心,true:注册,false:不注册
+    register-with-eureka: true
+    #服务发现,是否从Eureka注册中心获取注册信息,true:获取,false:不获取
+    fetch-registry: true
+    #配置Eureka注册中心即Eureka服务端的地址,集群地址以,隔开
+    service-url:
+      defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
+  instance:
+    #将ip地址注册到Eureka注册中心
+    prefer-ip-address: true
+    #该服务实例在注册中心的唯一实例ID,${spring.cloud.client.ip-address}获取该服务实例ip
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    #该服务实例向注册中心发送心跳间隔,单位秒,默认30秒
+    lease-renewal-interval-in-seconds: 20
+    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间,单位秒,默认90秒
+    lease-expiration-duration-in-seconds: 60
+
+zuul:
+  #指定忽略默认路由规则的服务,*表示所有服务都不创建默认路由规则
+  ignored-services: eureka-server,eureka-client,ribbon,hystrix,openfeign
+  #指定重定向时是否添加host请求头信息,true:添加,false:不添加
+  add-host-header: true
+  #指定全局路由是否开启重试,true:开启,false:关闭
+  retryable: true
+  #指定隔离策略,THREAD:线程池隔离策略
+  ribbon-isolation-strategy: THREAD
+  thread-pool:
+    #指定是否让每个路由使用独立的线程池,true:是,false:否
+    use-separate-thread-pools: true
+    #指定HystrixThreadPoolKey的前缀
+    thread-pool-key-prefix: zuulkey-
+#  #指定忽略的请求头,这些请求头在下游服务之间通信时会被过滤,不会被传递
+#  ignored-headers: header1,header2
+#  #指定是否忽略SpringSecurity的请求头,true:忽略,false:不忽略
+#  ignore-security-headers: false
+#  #指定匹配忽略客户端请求的路径表达式,对所有路由有效
+#  ignored-patterns: /**/home/**
+#  #指定路由前缀,为全局的路由规则增加前缀信息
+#  prefix: /api
+#  #指定全局的路由规则在转发时是否移除前缀,true:移除,false:不移除
+#  strip-prefix: false
+#  #传统路由配置之单实例配置
+#  routes:
+#    #配置路由规则,route-eureka-client为路由名,每一个路由名对应一条路由规则
+#    #路由规则为将与/eureka-client-api/**匹配的请求路径转发到http://localhost:9001/
+#    route-eureka-client:
+#      #指定匹配客户端请求的路径表达式
+#      path: /eureka-client-api/**
+#      #指定匹配客户端请求的路径表达式映射的具体实例地址
+#      url: http://localhost:9001/
+#  #传统路由配置之多实例配置
+#  routes:
+#    #配置路由规则,route-eureka-client为路由名,每一个路由名对应一条路由规则
+#    #路由规则为将与/eureka-client-api/**匹配的请求路径转发到eureka-client
+#    route-eureka-client:
+#      #指定匹配客户端请求的路径表达式
+#      path: /eureka-client-api/**
+#      #指定匹配客户端请求的路径表达式映射的服务名
+#      serviceId: eureka-client
+#
+#ribbon:
+#  eureka:
+#    #是否使用Eureka,true:使用,false:禁用,默认为true,禁用后需手动配置服务列表
+#    enabled: false
+#eureka-client:
+#  ribbon:
+#    #禁用Eureka后手动配置服务列表
+#    listOfServers: localhost:9001,localhost:9002,localhost:9003
+  #服务路由配置
+  routes:
+    #配置路由规则,route-eureka-client为路由名,每一个路由名对应一条路由规则
+    #路由规则为将与/eureka-client-api/**匹配的请求路径转发到eureka-client
+    route-eureka-client:
+      #指定匹配客户端请求的路径表达式
+      path: /eureka-client-api/**
+      #指定匹配客户端请求的路径表达式映射的服务名
+      serviceId: eureka-client
+      #指定该路由规则过滤的敏感头,设置为空表示不过滤
+      sensitive-headers:
+      #指定是否开启自定义敏感头,true:开启,false:关闭
+      custom-sensitive-headers: true
+    #配置路由规则,route-ribbon为路由名,每一个路由名对应一条路由规则
+    #路由规则为将与/ribbon-api/**匹配的请求路径转发到ribbon
+    route-ribbon:
+      #指定匹配客户端请求的路径表达式
+      path: /ribbon-api/**
+      #指定匹配客户端请求的路径表达式映射的服务名
+      serviceId: ribbon
+      #指定该路由规则过滤的敏感头,设置为空表示不过滤
+      sensitive-headers:
+      #指定是否开启自定义敏感头,true:开启,false:关闭
+      custom-sensitive-headers: true
+    #配置路由规则,route-openfeign为路由名,每一个路由名对应一条路由规则
+    #路由规则为将与/openfeign-api/**匹配的请求路径转发到openfeign
+    route-openfeign:
+      #指定匹配客户端请求的路径表达式
+      path: /openfeign-api/**
+      #指定匹配客户端请求的路径表达式映射的服务名
+      serviceId: openfeign
+      #指定该路由规则过滤的敏感头,设置为空表示不过滤
+      sensitive-headers:
+      #指定是否开启自定义敏感头,true:开启,false:关闭
+      custom-sensitive-headers: true
+    #配置路由规则,route-hystrix为路由名,每一个路由名对应一条路由规则
+    #路由规则为将与/hystrix-api/**匹配的请求路径转发到hystrix
+    route-hystrix:
+      #指定匹配客户端请求的路径表达式
+      path: /hystrix-api/**
+      #指定匹配客户端请求的路径表达式映射的服务名
+      serviceId: hystrix
+      #指定该路由规则过滤的敏感头,设置为空表示不过滤
+      sensitive-headers:
+      #指定是否开启自定义敏感头,true:开启,false:关闭
+      custom-sensitive-headers: true
+#      #指定该路由规则在转发时是否移除前缀,true:移除,false:不移除
+#      strip-prefix: false
+#    #服务路由配置的简写方式,eureka-client为服务名,/eureka-client-api/**为匹配客户端请求的路径表达式
+#    eureka-client: /eureka-client-api/**
+    #以forward形式的服务跳转配置
+    #路由规则为将与/zuul-api/**匹配的请求路径转发到API网关中以/local为前缀的请求
+    route-local:
+      #指定匹配客户端请求的路径表达式
+      path: /zuul-api/**
+      #指定本地跳转的路径前缀
+      url: forward:/local
+  ribbon:
+    eager-load:
+      #指定是否启用Zuul饥饿模式,true:启用,false:不启用
+      enabled: true
+#  SendErrorFilter:
+#    error:
+#      #禁用SendErrorFilter过滤器,true:禁用,false:不禁用
+#      disable: true
+  PreFilter:
+    pre:
+      #禁用PreFilter过滤器,true:禁用,false:不禁用
+      disable: true
+  PostFilter:
+    post:
+      #禁用PostFilter过滤器,true:禁用,false:不禁用
+      disable: true
+  ErrorFilter:
+    error:
+      #禁用ErrorFilter过滤器,true:禁用,false:不禁用
+      disable: true
+  ThrowExceptionFilter:
+    pre:
+      #禁用ThrowExceptionFilter过滤器,true:禁用,false:不禁用
+      disable: true
+
+#ribbon全局配置
+ribbon:
+  #处理请求的超时时间,单位ms,默认1000
+  ReadTimeout: 3000
+  #连接建立的超时时间,单位ms,默认1000
+  ConnectTimeout: 3000
+  #切换实例的最大重试次数,不包括首次调用,默认0次
+  MaxAutoRetriesNextServer: 1
+  #对当前实例的最大重试次数,不包括首次调用,默认1次
+  MaxAutoRetries: 1
+  #是否对所有操作请求都进行重试,true:是,false:否,只针对get请求进行重试
+  #设置为true时,如果是put或post等写操作,如果服务器接口不能保证幂等性,会产生不好的结果,所以OkToRetryOnAllOperations设置为true需慎用
+  #默认情况下,get请求无论是连接异常还是读取异常,都会进行重试,非get请求,只有连接异常时,才会进行重试
+  OkToRetryOnAllOperations: false
+  #对指定Http响应码进行重试
+  retryableStatusCodes: 404,500,502
+
+hystrix:
+  command:
+    #hystrix command参数全局配置
+    default:
+      execution:
+        timeout:
+          #是否启用hystrix超时,true:启用,false:不启用
+          enabled: true
+        isolation:
+          thread:
+            #hystrix超时时间,需大于ribbon的超时时间,单位ms
+            #hystrix超时时间需大于(MaxAutoRetries+1)(MaxAutoRetriesNextServer+1)(ConnectTimeout+ReadTimeout)
+            timeoutInMilliseconds: 30000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        #暴露指定监控端点,routes为路由监控端点
+        include: 'routes,hystrix.stream'

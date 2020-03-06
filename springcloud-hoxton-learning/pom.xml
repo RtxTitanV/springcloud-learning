@@ -19,5 +19,6 @@
         <module>spring-cloud-netflix-turbine</module>
         <module>spring-cloud-netflix-hystrix-monitored</module>
         <module>spring-cloud-openfeign-monitored</module>
+        <module>spring-cloud-netflix-zuul</module>
     </modules>
 </project>
