@@ -30,10 +30,10 @@ spring:
           ignore-local-ssh-settings: true
           #true或false,如果为false则忽略主机密钥错误
           strict-host-key-checking: false
-          #指定秘钥口令,没有可以不配置
+          #指定密钥口令,没有可以不配置
           passphrase: .*********.
           #指定有效的SSH私钥
-          #如果ignore-local-ssh-settings为true并且使用Git URI是SSH格式则必须设置
+          #如果ignore-local-ssh-settings为true并且使用的Git URI是SSH格式则必须设置
           private-key: |
                         -----BEGIN RSA PRIVATE KEY-----
                         Proc-Type: 4,ENCRYPTED
@@ -47,7 +47,7 @@ spring:
                         YxvwSwLLw8z8ZE0qF8rpBAUiZaoSzgQ/xZ2tEFIDPeEohsQcCx7cWTkCyMcxo3Vl
                         C6xFmXH95EDnob+SxErBJDt9WmM/PShkBgXP2bJAaXkg3NyfHcpde8ptDWc/+LfN
                         -----END RSA PRIVATE KEY-----
-#          #指定有效的主机秘钥,如果设置了host-key-algorithm则必须指定
+#          #指定有效的主机密钥,如果设置了host-key-algorithm则必须指定
 #          host-key:
 #          #ssh-dss,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521中的一个
 #          #如果设置了host-key则必须设置
@@ -73,7 +73,6 @@ spring:
 #          timeout: 5
 #          #指定远程仓库默认分支
 #          default-label: master
-#        #本地配置
 #        native:
 #          #指定本地文件系统路径
 #          search-locations: file:E:\software\DevelopmentTool\IntelliJ IDEA Space\my_project\springcloud-config-repository
