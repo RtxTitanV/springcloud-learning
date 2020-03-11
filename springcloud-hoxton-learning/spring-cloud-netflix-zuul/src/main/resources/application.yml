@@ -192,5 +192,5 @@ management:
   endpoints:
     web:
       exposure:
-        #暴露指定监控端点,routes为路由监控端点
+        #暴露指定端点,routes为路由端点
         include: 'routes,hystrix.stream'
