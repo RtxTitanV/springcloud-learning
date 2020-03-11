@@ -40,20 +40,20 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Spring Cloud Hystrix DashBoard 起步依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+        </dependency>
         <!-- Spring Cloud Eureka Client 起步依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        <!-- Spring Boot Actuator 起步依赖 -->
+        <!-- Actuator 起步依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!-- Spring Cloud Hystrix DashBoard 起步依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
         </dependency>
     </dependencies>
 
