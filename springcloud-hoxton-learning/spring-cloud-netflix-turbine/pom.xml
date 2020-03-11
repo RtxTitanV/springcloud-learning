@@ -40,15 +40,15 @@
     </dependencyManagement>
 
     <dependencies>
-        <!-- Spring Cloud Turbine 起步依赖 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
-        </dependency>
         <!-- Spring Cloud Eureka Client 起步依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- Spring Cloud Turbine 起步依赖 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-turbine</artifactId>
         </dependency>
         <!-- Actuator 起步依赖 -->
         <dependency>
