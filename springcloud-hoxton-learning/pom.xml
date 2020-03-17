@@ -24,5 +24,7 @@
         <module>spring-cloud-config-client</module>
         <module>spring-cloud-bus-server</module>
         <module>spring-cloud-bus-client</module>
+        <module>spring-cloud-sleuth-zipkin-a</module>
+        <module>spring-cloud-sleuth-zipkin-b</module>
     </modules>
 </project>
