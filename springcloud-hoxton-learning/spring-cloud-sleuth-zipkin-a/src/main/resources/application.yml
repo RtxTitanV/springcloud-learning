@@ -18,18 +18,25 @@ spring:
 #    #指定zipkin服务端连接地址,以http的方式提交到zipkin
 #    base-url: http://自己的zipkin服务器ip:9411
     sender:
-      #指定rabbitmq的方式
-      type: rabbit
-  rabbitmq:
-    #指定rabbitmq的host
-    host: 这里填自己的rabbitmq服务器ip
-    #指定rabbitmq的端口
-    port: 5672
-    #指定rabbitmq的用户名
-    username: admin
-    #指定rabbitmq的密码
-    password: admin
-
+#      #指定rabbitmq的方式
+#      type: rabbit
+      #指定kafka的方式
+      type: kafka
+    kafka:
+      #指定kafka的topic,默认为zipkin
+      topic: zipkin
+#  rabbitmq:
+#    #指定rabbitmq的host
+#    host: 这里填自己的rabbitmq服务器ip
+#    #指定rabbitmq的端口
+#    port: 5672
+#    #指定rabbitmq的用户名
+#    username: admin
+#    #指定rabbitmq的密码
+#    password: admin
+  kafka:
+    #指定host/port列表,用于建立和Kafka服务器的连接
+    bootstrap-servers: 这里填自己的Kafka服务器ip:9092
 
 eureka:
   client:

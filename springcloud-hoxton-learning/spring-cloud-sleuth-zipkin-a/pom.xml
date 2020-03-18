@@ -55,10 +55,15 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-zipkin</artifactId>
         </dependency>
-        <!-- SpringRabbit 依赖 -->
+<!--        &lt;!&ndash; SpringRabbit 依赖 &ndash;&gt;
         <dependency>
             <groupId>org.springframework.amqp</groupId>
             <artifactId>spring-rabbit</artifactId>
+        </dependency>-->
+        <!-- SpringKafka 依赖 -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
         <!-- SpringRetry 重试框架依赖 -->
         <dependency>
