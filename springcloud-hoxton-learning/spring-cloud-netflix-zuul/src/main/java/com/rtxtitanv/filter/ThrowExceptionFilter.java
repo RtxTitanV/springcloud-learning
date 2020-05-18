@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @author rtxtitanv
  * @version v1.0.0
  * @name com.rtxtitanv.filter.ThrowExceptionFilter
- * @description pre类型的自定义过滤器,抛出异常,测试error过滤器
+ * @description pre类型的自定义过滤器，抛出异常，测试error过滤器
  * @date 2020/3/3 23:37
  */
 @Component
@@ -19,7 +19,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
     private static Logger logger = LoggerFactory.getLogger(ThrowExceptionFilter.class);
 
     /**
-     * 过滤器类型,有pre、routing、post、error四种
+     * 过滤器类型，有pre、routing、post、error四种
      * @return 代表过滤器类型的字符串
      */
     @Override
@@ -28,7 +28,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
     }
 
     /**
-     * 过滤器执行顺序,数值越小优先级越高
+     * 过滤器执行顺序，数值越小优先级越高
      * @return 代表过滤器执行顺序的int值
      */
     @Override
@@ -38,7 +38,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
 
     /**
      * 是否进行过滤
-     * @return true:过滤,false:不过滤
+     * @return true：过滤，false：不过滤
      */
     @Override
     public boolean shouldFilter() {
@@ -46,7 +46,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
     }
 
     /**
-     * 自定义的过滤器逻辑,当shouldFilter()返回true时会执行
+     * 自定义的过滤器逻辑，当shouldFilter()返回true时会执行
      * @return Object
      * @throws ZuulException
      */
@@ -58,7 +58,7 @@ public class ThrowExceptionFilter extends ZuulFilter {
     }
 
     /**
-     * 抛出一个RuntimeException,用于测试error过滤器
+     * 抛出一个RuntimeException，用于测试error过滤器
      */
     private void throwException() {
         throw new RuntimeException("error");
