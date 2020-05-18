@@ -7,21 +7,21 @@ spring:
 
 eureka:
   client:
-    #服务注册,是否将服务注册到Eureka注册中心,true:注册,false:不注册
+    #服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
     register-with-eureka: true
-    #服务发现,是否从Eureka注册中心获取注册信息,true:获取,false:不获取
+    #服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
     fetch-registry: true
-    #配置Eureka注册中心即Eureka服务端的地址,集群地址以,隔开
+    #配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
     service-url:
       defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
   instance:
     #将ip地址注册到Eureka注册中心
     prefer-ip-address: true
-    #该服务实例在注册中心的唯一实例ID,${spring.cloud.client.ip-address}获取该服务实例ip
+    #该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    #该服务实例向注册中心发送心跳间隔,单位秒,默认30秒
+    #该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
     lease-renewal-interval-in-seconds: 20
-    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间,单位秒,默认90秒
+    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
     lease-expiration-duration-in-seconds: 60
 
 hystrix:
@@ -32,92 +32,92 @@ hystrix:
       #HystrixCommand.run()执行的配置
       execution:
         timeout:
-          #HystrixCommand.run()的执行是否启用超时时间,true:启用,false:不启用,默认true
+          #HystrixCommand.run()的执行是否启用超时时间，true：启用，false：不启用，默认true
           enabled: true
         isolation:
-          #HystrixCommand.run()执行的隔离策略,默认THREAD
-          #THREAD:线程池隔离策略,它在独立的线程上执行,并且它的并发限制受线程池中线程数量的限制
-          #SEMAPHORE:信号量隔离策略,它在调用线程上执行,并且它的并发限制受信号量计数的限制
+          #HystrixCommand.run()执行的隔离策略，默认THREAD
+          #THREAD：线程池隔离策略，它在独立的线程上执行，并且它的并发限制受线程池中线程数量的限制
+          #SEMAPHORE：信号量隔离策略，它在调用线程上执行，并且它的并发限制受信号量计数的限制
           strategy: THREAD
           thread:
-            #HystrixCommand.run()执行的超时时间,单位ms,默认1000
-            #HystrixCommand执行时间超过该配置值后,Hystrix会将该命令标记为TIMEOUT并进入服务降级处理逻辑
+            #HystrixCommand.run()执行的超时时间，单位ms，默认1000
+            #HystrixCommand执行时间超过该配置值后，Hystrix会将该命令标记为TIMEOUT并进入服务降级处理逻辑
             timeoutInMilliseconds: 2000
-            #HystrixCommand.run()执行超时的时候是否将它中断,true:中断,false:不中断,默认true
+            #HystrixCommand.run()执行超时的时候是否将它中断，true：中断，false：不中断，默认true
             interruptOnTimeout: true
-            #HystrixCommand.run()执行被取消时是否将它中断，true:中断,false:不中断,默认true
+            #HystrixCommand.run()执行被取消时是否将它中断，true：中断，false：不中断，默认true
             interruptOnCancel: true
           #semaphore:
-            #HystrixCommand的隔离策略为信号量时配置信号量大小,当最大并发请求数达到该值时,后续请求将会被拒绝,默认10
+            #HystrixCommand的隔离策略为信号量时配置信号量大小，当最大并发请求数达到该值时，后续请求将会被拒绝，默认10
             #maxConcurrentRequests: 20
       #HystrixCommand.getFallback()执行的配置
       fallback:
-        #是否启用服务降级,true:启用,false:不启用,请求失败或拒绝时,不会调用HystrixCommand.getFallback()来执行服务降级逻辑
+        #是否启用服务降级，true：启用，false：不启用，请求失败或拒绝时，不会调用HystrixCommand.getFallback()来执行服务降级逻辑
         enabled: true
         semaphore:
-          #从调用线程中允许HystrixCommand.fallback()方法执行的最大并发请求数,当达到最大并发请求数时,后续的请求将会被拒绝并抛出异常,默认10
+          #从调用线程中允许HystrixCommand.fallback()方法执行的最大并发请求数，当达到最大并发请求数时，后续的请求将会被拒绝并抛出异常，默认10
           maxConcurrentRequests: 20
       #熔断配置
       circuitBreaker:
-        #当服务请求命令失败时,是否使用断路器来跟踪其健康指标和熔断请求,true:是,false:否,默认true
+        #当服务请求命令失败时，是否使用断路器来跟踪其健康指标和熔断请求，true：是，false：否，默认true
         enabled: true
-        #一个滚动时间窗(默认10s)中触发熔断的最小请求数,默认20
+        #一个滚动时间窗（默认10s）中触发熔断的最小请求数，默认20
         requestVolumeThreshold: 20
-        #以requestVolumeThreshold为前提,一个滚动时间窗(默认10s)中触发熔断的错误百分比,默认50
+        #以requestVolumeThreshold为前提，一个滚动时间窗（默认10s）中触发熔断的错误百分比，默认50
         errorThresholdPercentage: 60
-        #熔断后的休眠时间,单位ms,默认5000,休眠时间过了后,断路器半开,会再次尝试请求命令,依然失败断路器会继续打开,成功断路器会关闭,解除熔断
+        #熔断后的休眠时间，单位ms，默认5000，休眠时间过了后，断路器半开，会再次尝试请求命令，依然失败断路器会继续打开，成功断路器会关闭，解除熔断
         sleepWindowInMilliseconds: 5000
-        #是否强制打开断路器,true:打开,会拒绝所有请求,false:不打开,默认false,forceOpen优先于forceClosed
+        #是否强制打开断路器，true：打开，会拒绝所有请求，false：不打开，默认false，forceOpen优先于forceClosed
         forceOpen: false
-        #是否强制关闭断路器,true:关闭,会处理所有请求,false:不关闭,默认false
+        #是否强制关闭断路器，true：关闭，会处理所有请求，false：不关闭，默认false
         forceClosed: false
       #统计HystrixCommand和HystrixObservableCommand执行信息配置
       metrics:
         rollingStats:
-          #滚动时间窗长度,单位ms,默认10000
+          #滚动时间窗长度，单位ms，默认10000
           timeInMilliseconds: 10000
-          #滚动时间窗统计指标信息时bucket的数量,默认10
-          #metrics.rollingStats.timeInMilliseconds必须被metrics.rollingStats.numBuckets整除,否则抛出异常
+          #滚动时间窗统计指标信息时bucket的数量，默认10
+          #metrics.rollingStats.timeInMilliseconds必须被metrics.rollingStats.numBuckets整除，否则抛出异常
           numBuckets: 10
         rollingPercentile:
-          #是否启用百分数统计,true:启用,false:不启用,默认true
+          #是否启用百分数统计，true：启用，false：不启用，默认true
           enabled: true
-          #百分数统计的滚动时间窗长度,单位ms，默认60000
+          #百分数统计的滚动时间窗长度，单位ms，默认60000
           timeInMilliseconds: 60000
-          #百分数统计的滚动时间窗中bucket的数量,默认6
-          #metrics.rollingPercentile.timeInMilliseconds必须被metrics.rollingPercentile.numBuckets整除,否则抛出异常
+          #百分数统计的滚动时间窗中bucket的数量，默认6
+          #metrics.rollingPercentile.timeInMilliseconds必须被metrics.rollingPercentile.numBuckets整除，否则抛出异常
           numBuckets: 6
-          #执行过程中每个bucket中保留的最大执行次数,如果在滚动时间窗内发生超过该值的执行次数,就从最初位置重新开始,默认100
+          #执行过程中每个bucket中保留的最大执行次数，如果在滚动时间窗内发生超过该值的执行次数，就从最初位置重新开始，默认100
           bucketSize: 100
         healthSnapshot:
-          #采集影响断路器状态的健康快照的间隔等待时间,单位ms,默认500
+          #采集影响断路器状态的健康快照的间隔等待时间，单位ms，默认500
           intervalInMilliseconds: 500
       requestCache:
-        #是否启用请求缓存,true:启用,false:不启用,默认true
+        #是否启用请求缓存，true：启用，false：不启用，默认true
         enabled: true
       requestLog:
-        #HystrixCommand的执行和事件是否打印日志到HystrixRequestLog中,true:打印,false:不打印,默认true
+        #HystrixCommand的执行和事件是否打印日志到HystrixRequestLog中，true：打印，false：不打印，默认true
         enabled: true
   #HystrixCollapser执行配置
   collapser:
     #hystrix collapser参数全局配置
     default:
-      #一次请求合并批处理中允许的最大请求数,默认Integer.MAX_VALUE
+      #一次请求合并批处理中允许的最大请求数，默认Integer.MAX_VALUE
       maxRequestsInBatch: 100
-      #请求合并批处理过程中每个命令延迟的时间,单位ms,默认10
+      #请求合并批处理过程中每个命令延迟的时间，单位ms，默认10
       timerDelayinMilliseconds: 10
       requestCache:
-        #请求合并批处理过程中是否开启缓存,true:开启,false:关闭,默认true
+        #请求合并批处理过程中是否开启缓存，true：开启，false：关闭，默认true
         enabled: true
   #HystrixCommand执行所在线程池的配置
   threadpool:
     #hystrix threadpool参数全局配置
     default:
-      #执行命令线程池的核心线程数,默认10
+      #执行命令线程池的核心线程数，默认10
       coreSize: 10
-      #执行命令线程池的最大线程数,超过该线程数的请求会被拒绝
+      #执行命令线程池的最大线程数，超过该线程数的请求会被拒绝
       maximumSize: 10
-      #线程池的最大队列大小,设置为-1时,线程池将使用SynchronousQueue实现的队列,否则将使用LinkedBlockingQueue实现的队列,默认-1
+      #线程池的最大队列大小，设置为-1时，线程池将使用SynchronousQueue实现的队列，否则将使用LinkedBlockingQueue实现的队列，默认-1
       maxQueueSize: -1
-      #线程池的拒绝队列大小,即使maxQueueSize没有达到,达到queueSizeRejectionThreshold的值后,请求也会被拒绝,当maxQueueSize为-1时该属性不可用,默认5
+      #线程池的拒绝队列大小，即使maxQueueSize没有达到，达到queueSizeRejectionThreshold的值后，请求也会被拒绝，当maxQueueSize为-1时该属性不可用，默认5
       queueSizeRejectionThreshold: 5
