@@ -10,7 +10,7 @@ spring:
 #      #分布式配置中心服务端没在eureka注册中心注册时需指定该配置中心服务端的地址
 #      uri: http://localhost:9600/
       discovery:
-        #指定是否启用服务发现访问配置中心服务端,true:启用,false:不启用
+        #指定是否启用服务发现访问配置中心服务端，true：启用，false：不启用
         enabled: true
         #指定分布式配置中心服务名称
         service-id: bus-server
@@ -18,23 +18,23 @@ spring:
       username: rtxtitanv
       #指定连接配置中心服务端的密码
       password: rtxtitanv
-      #指定要获取的配置文件的前缀名,对应配置文件中的{application}
+      #指定要获取的配置文件的前缀名，对应配置文件中的{application}
       name: application
-      #指定要获取的配置文件的环境名,对应配置文件中{profile}
+      #指定要获取的配置文件的环境名，对应配置文件中{profile}
       profile: dev
-      #指定要获取的配置文件的分支名,对应{label},默认为master
+      #指定要获取的配置文件的分支名，对应{label}，默认为master
       label: master
-      #指定是否开启快速失败响应,true:开启,false:关闭
+      #指定是否开启快速失败响应，true：开启，false：关闭
       fail-fast: true
       #config客户端重试配置
       retry:
-        #指定最大重试次数,默认6
+        #指定最大重试次数，默认6
         max-attempts: 8
-        #指定最大间隔时间,单位ms,默认2000
+        #指定最大间隔时间，单位ms，默认2000
         max-interval: 1200
-        #指定间隔乘数,默认1.1
+        #指定间隔乘数，默认1.1
         multiplier: 1.2
-        #指定初始重试间隔时间.单位ms,默认1000
+        #指定初始重试间隔时间，单位ms，默认1000
         initial-interval: 800
 #  #rabbitmq相关配置
 #  rabbitmq:
@@ -48,32 +48,32 @@ spring:
 #    password: admin
   #kafka相关配置
   kafka:
-    #指定host/port列表,用于建立和Kafka服务器的连接
+    #指定host/port列表，用于建立和Kafka服务器的连接
     #集群用ip:port,ip:port,ip:port,...,ip:port
     bootstrap-servers: 这里填自己的Kafka服务器ip:9092
 
 eureka:
   client:
-    #服务注册,是否将服务注册到Eureka注册中心,true:注册,false:不注册
+    #服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
     register-with-eureka: true
-    #服务发现,是否从Eureka注册中心获取注册信息,true:获取,false:不获取
+    #服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
     fetch-registry: true
-    #配置Eureka注册中心即Eureka服务端的地址,集群地址以,隔开
+    #配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
     service-url:
       defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
   instance:
     #将ip地址注册到Eureka注册中心
     prefer-ip-address: true
-    #该服务实例在注册中心的唯一实例ID,${spring.cloud.client.ip-address}获取该服务实例ip
+    #该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    #该服务实例向注册中心发送心跳间隔,单位秒,默认30秒
+    #该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
     lease-renewal-interval-in-seconds: 20
-    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间,单位秒,默认90秒
+    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
     lease-expiration-duration-in-seconds: 60
 
 management:
   endpoints:
     web:
       exposure:
-        #暴露指定端点,bus-refresh为bus刷新配置端点
+        #暴露指定端点，bus-refresh为bus刷新配置端点
         include: 'bus-refresh'

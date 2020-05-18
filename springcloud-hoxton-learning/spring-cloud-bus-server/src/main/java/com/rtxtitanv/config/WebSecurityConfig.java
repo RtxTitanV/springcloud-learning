@@ -19,8 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
         //关闭security的csrf检验
         http.csrf().disable();
-        //为了可以使用http://${user}:${password}@${host}:${port}/eureka/这种方式登录,所以必须是httpBasic,
-        //如果是form方式,不能使用url格式登录
+        //为了可以使用http://${user}:${password}@${host}:${port}/eureka/这种方式登录，所以必须是httpBasic，
+        //如果是form方式，不能使用url格式登录
         http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
     }
 }

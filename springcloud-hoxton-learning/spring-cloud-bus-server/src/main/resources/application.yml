@@ -7,7 +7,7 @@ spring:
 #  profiles:
 #    active: native
   security:
-    #配置spring security登录用户名和密码,给Config配置中心添加认证
+    #配置spring security登录用户名和密码，给Config配置中心添加认证
     user:
       name: rtxtitanv
       password: rtxtitanv
@@ -17,20 +17,20 @@ spring:
         git:
           #指定git远程仓库地址
           uri: https://github.com/RtxTitanV/springcloud-config-repository.git
-#          #指定仓库下的相对搜索路径,可以配置多个
+#          #指定仓库下的相对搜索路径，可以配置多个
 #          search-paths: '{application}'
-          #指定git仓库用户名密码,公开仓库可以不指定用户名密码,私有仓库需要指定
+          #指定git仓库用户名密码，公开仓库可以不指定用户名密码，私有仓库需要指定
           #指定git仓库用户名
           username: rtxtitanv
           #指定git仓库密码
           password: .*********.
 #          #使用SSH的方式连接git远程仓库
 #          uri: git@github.com:RtxTitanV/springcloud-config-repository.git
-#          #指定是否激活基于属性的SSH配置,true:激活,false:不激活,使用基于文件的SSH配置
+#          #指定是否激活基于属性的SSH配置，true：激活，false：不激活，使用基于文件的SSH配置
 #          ignore-local-ssh-settings: true
-#          #true或false,如果为false则忽略主机密钥错误
+#          #true或false，如果为false则忽略主机密钥错误
 #          strict-host-key-checking: false
-#          #指定密钥口令,没有可以不配置
+#          #指定密钥口令，没有可以不配置
 #          passphrase: .*********.
 #          #指定有效的SSH私钥
 #          #如果ignore-local-ssh-settings为true并且使用的Git URI是SSH格式则必须设置
@@ -47,27 +47,27 @@ spring:
 #                        YxvwSwLLw8z8ZE0qF8rpBAUiZaoSzgQ/xZ2tEFIDPeEohsQcCx7cWTkCyMcxo3Vl
 #                        C6xFmXH95EDnob+SxErBJDt9WmM/PShkBgXP2bJAaXkg3NyfHcpde8ptDWc/+LfN
 #                        -----END RSA PRIVATE KEY-----
-#          #指定有效的主机密钥,如果设置了host-key-algorithm则必须指定
+#          #指定有效的主机密钥，如果设置了host-key-algorithm则必须指定
 #          host-key:
-#          #ssh-dss,ssh-rsa,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521中的一个
+#          #ssh-dss、ssh-rsa、ecdsa-sha2-nistp256、ecdsa-sha2-nistp384、ecdsa-sha2-nistp521中的一个
 #          #如果设置了host-key则必须设置
 #          host-key-algorithm:
 #          #指定自定义.known_hosts文件位置
 #          known-hosts-file:
 #          #指定覆盖服务器身份验证方法顺序
-#          #如果服务器在publickey方法之前具有键盘交互式身份验证,则应允许避免登录提示。
+#          #如果服务器在publickey方法之前具有键盘交互式身份验证，则应允许避免登录提示。
 #          preferred-authentications:
-          #指定是否开启启动时直接从git获取配置,true:开启,false:关闭
+          #指定是否开启启动时直接从git获取配置，true：开启，false：关闭
           clone-on-start: true
-          #指定是否强制从远程仓库拉取,true:是,false:否,默认false
+          #指定是否强制从远程仓库拉取，true：是，false：否，默认false
           force-pull: true
           #指定配置文件被剪出或克隆到本地文件系统的存放目录
           basedir: E:\software\DevelopmentTool\IntelliJ IDEA Space\my_project\springcloud-config-repository\localrep
-#          #指定git刷新率,单位秒,默认0
+#          #指定git刷新率，单位秒，默认0
 #          refresh-rate: 0
-#          #指定是否删除本地仓库未跟踪的分支,true:删除,false:不删除,默认false
+#          #指定是否删除本地仓库未跟踪的分支，true：删除，false：不删除，默认false
 #          delete-untracked-branches: true
-#          #指定是否跳过SSL证书验证,true:跳过,false:不跳过,默认false
+#          #指定是否跳过SSL证书验证，true：跳过，false：不跳过，默认false
 #          skip-ssl-validation: true
 #          #指定Config服务器获取HTTP连接的超时时间
 #          timeout: 5
@@ -76,10 +76,10 @@ spring:
 #        native:
 #          #指定本地文件系统路径
 #          search-locations: file:E:\software\DevelopmentTool\IntelliJ IDEA Space\my_project\springcloud-config-repository
-#          #指定是否将{label}附加到search-locations后缀,true:是,false:否
+#          #指定是否将{label}附加到search-locations后缀，true：是，false：否
 #          add-label-locations: false
 #        health:
-#          #是否启用健康指示器,true:启用,false:禁用
+#          #是否启用健康指示器，true：启用，false：禁用
 #          enabled: false
 #  #rabbitmq相关配置
 #  rabbitmq:
@@ -93,31 +93,31 @@ spring:
 #    password: admin
   #kafka相关配置
   kafka:
-    #指定host/port列表,用于建立和Kafka服务器的连接
+    #指定host/port列表，用于建立和Kafka服务器的连接
     bootstrap-servers: 这里填自己的Kafka服务器ip:9092
 
 eureka:
   client:
-    #服务注册,是否将服务注册到Eureka注册中心,true:注册,false:不注册
+    #服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
     register-with-eureka: true
-    #服务发现,是否从Eureka注册中心获取注册信息,true:获取,false:不获取
+    #服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
     fetch-registry: true
-    #配置Eureka注册中心即Eureka服务端的地址,集群地址以,隔开
+    #配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
     service-url:
       defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
   instance:
     #将ip地址注册到Eureka注册中心
     prefer-ip-address: true
-    #该服务实例在注册中心的唯一实例ID,${spring.cloud.client.ip-address}获取该服务实例ip
+    #该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    #该服务实例向注册中心发送心跳间隔,单位秒,默认30秒
+    #该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
     lease-renewal-interval-in-seconds: 20
-    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间,单位秒,默认90秒
+    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
     lease-expiration-duration-in-seconds: 60
 
 management:
   endpoints:
     web:
       exposure:
-        #暴露指定端点,bus-refresh为bus刷新配置端点
+        #暴露指定端点，bus-refresh为bus刷新配置端点
         include: 'bus-refresh'
