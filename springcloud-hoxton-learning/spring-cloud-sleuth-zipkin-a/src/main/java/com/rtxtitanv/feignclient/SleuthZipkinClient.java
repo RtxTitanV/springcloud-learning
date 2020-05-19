@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(value = "sleuth-zipkin-b", fallback = SleuthZipkinFallback.class)
 public interface SleuthZipkinClient {
     /**
-     * 声明式REST服务调用接口方法,调用服务sleuth-zipkin-b的/home
+     * 声明式REST服务调用接口方法，调用服务sleuth-zipkin-b的/home
      * @return 调用sleuth-zipkin-b返回的结果
      */
     @GetMapping("/home")
     String toSleuthZipkinB();
 
     /**
-     * 声明式REST服务调用接口方法,调用服务sleuth-zipkin-b的/toSleuthZipkinA
+     * 声明式REST服务调用接口方法，调用服务sleuth-zipkin-b的/toSleuthZipkinA
      * @return 调用sleuth-zipkin-b返回的结果
      */
     @GetMapping("/toSleuthZipkinA")
