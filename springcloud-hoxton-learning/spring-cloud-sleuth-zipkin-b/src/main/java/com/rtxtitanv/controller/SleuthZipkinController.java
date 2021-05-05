@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.controller.SleuthZipkinController
  * @description SleuthZipkinController
  * @date 2020/3/16 12:28

@@ -2,7 +2,7 @@ package com.rtxtitanv.service;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.service.SleuthZipkinService
  * @description SleuthZipkinService
  * @date 2020/3/16 12:30

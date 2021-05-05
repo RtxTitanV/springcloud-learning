@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.service.impl.SleuthZipkinServiceImpl
  * @description SleuthZipkinService实现类
  * @date 2020/3/16 12:31

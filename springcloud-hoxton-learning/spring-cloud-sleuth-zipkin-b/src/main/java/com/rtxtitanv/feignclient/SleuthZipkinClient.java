@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.feignclient.SleuthZipkinClient
  * @description 声明式REST服务调用接口
  * @date 2020/3/16 12:33

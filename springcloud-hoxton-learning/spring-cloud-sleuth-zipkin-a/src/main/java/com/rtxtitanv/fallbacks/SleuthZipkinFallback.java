@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.fallbacks.SleuthZipkinFallback
  * @description SleuthZipkinClient的降级类
  * @date 2020/3/16 12:35
