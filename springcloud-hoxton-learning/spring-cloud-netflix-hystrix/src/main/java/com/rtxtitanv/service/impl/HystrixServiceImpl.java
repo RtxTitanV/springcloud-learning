@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.service.impl.HystrixServiceImpl
  * @description HystrixService实现类
  * @date 2020/2/25 19:10
