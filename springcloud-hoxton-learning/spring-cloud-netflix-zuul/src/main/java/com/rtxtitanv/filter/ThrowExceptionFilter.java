@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.filter.ThrowExceptionFilter
  * @description pre类型的自定义过滤器，抛出异常，测试error过滤器
  * @date 2020/3/3 23:37

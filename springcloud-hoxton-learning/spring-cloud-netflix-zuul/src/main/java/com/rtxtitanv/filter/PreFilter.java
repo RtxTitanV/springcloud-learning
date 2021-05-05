@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.filter.PreFilter
  * @description pre类型的自定义过滤器
  * @date 2020/3/2 12:07

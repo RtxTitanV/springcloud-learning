@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.filter.ErrorFilter
  * @description error类型的自定义过滤器
  * @date 2020/3/3 23:36

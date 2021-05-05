@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.controller.ZuulController
  * @description ZuulApiController 提供本地接口用于本地跳转测试
  * @date 2020/3/2 18:57

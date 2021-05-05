@@ -13,7 +13,7 @@ import java.io.InputStream;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.fallback.ZuulFallback
  * @description 服务降级类
  * @date 2020/3/3 22:42
