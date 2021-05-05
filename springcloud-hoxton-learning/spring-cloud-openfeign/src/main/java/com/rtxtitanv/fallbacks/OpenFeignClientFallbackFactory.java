@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.fallbacks.OpenFeignClientFallbackFactory
  * @description OpenFeignClient的降级工厂类
  * @date 2020/2/20 20:46

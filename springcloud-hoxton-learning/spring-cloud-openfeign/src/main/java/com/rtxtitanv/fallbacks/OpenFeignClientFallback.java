@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.fallbacks.OpenFeignClientImpl
  * @description OpenFeignClient的降级类
  * @date 2020/2/20 18:19
