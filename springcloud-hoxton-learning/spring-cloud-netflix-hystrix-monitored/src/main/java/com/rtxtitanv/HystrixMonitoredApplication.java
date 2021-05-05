@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.HystrixMonitoredApplication
  * @description 主启动类
  * @date 2020/2/27 18:47

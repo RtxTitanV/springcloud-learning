@@ -7,7 +7,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.HystrixDashboardApplication
  * @description 主启动类
  * @date 2020/2/27 17:19

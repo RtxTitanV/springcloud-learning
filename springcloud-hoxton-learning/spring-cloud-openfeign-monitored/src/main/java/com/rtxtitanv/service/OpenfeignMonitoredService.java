@@ -2,7 +2,7 @@ package com.rtxtitanv.service;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.service.OpenfeignMonitoredService
  * @description OpenfeignMonitoredService
  * @date 2020/2/27 19:22
