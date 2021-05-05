@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.config.RestTemplateConfig
  * @description RestTemplate配置类
  * @date 2020/2/18 15:35
