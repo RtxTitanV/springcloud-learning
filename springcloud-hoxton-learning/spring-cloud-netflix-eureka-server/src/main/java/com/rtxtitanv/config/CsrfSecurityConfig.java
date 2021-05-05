@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.config.CsrfSecurityConfig
  * @description 关闭security的csrf检验
  * @date 2020/2/15 12:01
