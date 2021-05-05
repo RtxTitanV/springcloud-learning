@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.controller.BusClientController
  * @description BusClientController
  * @date 2020/3/13 11:19

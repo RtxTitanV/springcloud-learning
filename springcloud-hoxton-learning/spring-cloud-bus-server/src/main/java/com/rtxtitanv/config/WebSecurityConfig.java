@@ -7,7 +7,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 
 /**
  * @author rtxtitanv
- * @version v1.0.0
+ * @version 1.0.0
  * @name com.rtxtitanv.config.WebSecurityConfig
  * @description WebSecurityConfig
  * @date 2020/3/13 20:55
