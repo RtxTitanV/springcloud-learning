@@ -39,7 +39,7 @@ spring:
 #  #rabbitmq相关配置
 #  rabbitmq:
 #    #指定rabbitmq的host
-#    host: 这里填自己的rabbitmq服务器ip
+#    host: 这里可以填自己的rabbitmq服务器ip
 #    #指定rabbitmq的端口
 #    port: 5672
 #    #指定rabbitmq的用户名
@@ -49,8 +49,8 @@ spring:
   #kafka相关配置
   kafka:
     #指定host/port列表，用于建立和Kafka服务器的连接
-    #集群用ip:port,ip:port,ip:port,...,ip:port
-    bootstrap-servers: 这里填自己的Kafka服务器ip:9092
+    #集群可以配置为ip:port,ip:port,ip:port,...,ip:port
+    bootstrap-servers: 这里可以填自己的Kafka服务器ip:9092
 
 eureka:
   client:
