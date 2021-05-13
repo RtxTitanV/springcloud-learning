@@ -1,0 +1,19 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: nacos-discovery-consumer
+  cloud:
+    nacos:
+      discovery:
+#        #nacos服务器地址
+#        server-addr: 127.0.0.1:8848
+        #nacos服务器地址，nacos集群可以设置为nacos集群的域名:port
+        server-addr: nacos.cluster.test.com:80
+        #设置服务所处的分组，默认值为DEFAULT_GROUP
+        group: DEV_GROUP
+        #设置服务所处的命名空间，通过命名空间的ID来指定命名空间，这里设置为命名空间dev
+        namespace: d8830907-76c9-4b18-a670-789f4290b8b5
+#        #设置服务所处的命名空间，通过命名空间的ID来指定命名空间，这里设置为命名空间test
+#        namespace: 374a5221-33fb-47b7-8ca1-4b0955c81c4c

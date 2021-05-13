@@ -1,0 +1,78 @@
+server:
+  port: ${PORT:8000}
+
+spring:
+  application:
+    name: nacos-config-client
+#  profiles:
+#    #配置当前环境对应的profile为dev
+#    active: dev
+#    #配置当前环境应的profile为test
+#    active: test
+#    #配置当前环境应的profile为prod
+#    active: prod
+  cloud:
+    nacos:
+      config:
+#        #nacos服务器地址
+#        server-addr: 127.0.0.1:8848
+        #nacos服务器地址，nacos集群可以设置为nacos集群的域名:port
+        server-addr: nacos.cluster.test.com:80
+        #指定dataId的prefix，默认值为spring.application.name的值
+        #这里确定要获取的配置文件的dataId的prefix为user-config
+        prefix: user-config
+        #指定dataId的后缀，同时也是配置的文件格式，默认值为properties
+        #这里确定要获取的配置文件的格式为yaml
+        file-extension: yaml
+#        #这里确定要获取的配置文件的格式为xml
+#        file-extension: xml
+#        #这里确定要获取的配置文件的格式为json
+#        file-extension: json
+#        #指定Group，默认值为DEFAULT_GROUP
+#        #这里确定要获取的配置文件所属Group为DEV_GROUP
+#        group: DEV_GROUP
+#        #这里确定要获取的配置文件所属Group为TEST_GROUP
+#        group: TEST_GROUP
+#        #这里确定要获取的配置文件所属Group为PROD_GROUP
+#        group: PROD_GROUP
+        #指定命名空间，必须通过命名空间的ID来指定，默认使用Nacos的public命名空间
+        #这里确定要获取的配置文件所属的Namespace为dev
+        namespace: d8830907-76c9-4b18-a670-789f4290b8b5
+#        #这里确定要获取的配置文件所属的Namespace为test
+#        namespace: 374a5221-33fb-47b7-8ca1-4b0955c81c4c
+#        #这里确定要获取的配置文件所属的Namespace为prod
+#        namespace: 35be3a75-f528-4f10-b38f-acfaf1f1d4f5
+        #自定义扩展的dataId配置，既可以解决多个应用间配置共享的问题，又可以支持一个应用有多个配置文件
+        extension-configs:
+          #dataId在默认的组DEFAULT_GROUP，不支持配置动态刷新
+          - data-id: ext-config-common-test1.properties
+          #dataId在GLOBALE_GROUP分组，不支持配置动态刷新
+          - data-id: ext-config-common-test2.yaml
+            #配置dataId所在分组，缺省默认DEFAULT_GROUP
+            group: GLOBALE_GROUP
+          #dataId在REFRESH_GROUP分组，支持配置动态刷新
+          - data-id: ext-config-common-test3.json
+            group: REFRESH_GROUP
+            #配置dataId在配置变更时，是否支持动态刷新，缺省默认false
+            refresh: true
+          #该dataId配置用于测试配置优先级
+          - data-id: priority-extension-configs.yaml
+            group: REFRESH_GROUP
+            refresh: true
+        #配置共享的dataId
+        shared-configs:
+          #dataId在默认的组DEFAULT_GROUP，不支持配置动态刷新
+          - data-id: share-config-test1.properties
+          #dataId在GLOBALE_GROUP分组，不支持配置动态刷新
+          - data-id: share-config-test2.yaml
+            #配置dataId所在分组，缺省默认DEFAULT_GROUP
+            group: GLOBALE_GROUP
+          #dataId在REFRESH_GROUP分组，支持配置动态刷新
+          - data-id: share-config-test3.json
+            group: REFRESH_GROUP
+            #配置dataId在配置变更时，是否支持动态刷新，缺省默认false
+            refresh: true
+          #该dataId配置用于测试配置优先级
+          - data-id: priority-shared-configs.yaml
+            group: REFRESH_GROUP
+            refresh: true
