@@ -24,7 +24,7 @@ public class RestTemplateConfig {
     @Bean(name = "restTemplate")
     public RestTemplate getRestTemplate() {
         HttpComponentsClientHttpRequestFactory httpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-        //可以解决ribbon超时时间设置不生效问题
+        // 可以解决ribbon超时时间设置不生效问题
         httpRequestFactory.setReadTimeout(5000);
         httpRequestFactory.setConnectTimeout(5000);
         return new RestTemplate(httpRequestFactory);
