@@ -7,19 +7,19 @@ spring:
 
 eureka:
   client:
-    #服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
+    # 服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
     register-with-eureka: true
-    #服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
+    # 服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
     fetch-registry: true
-    #配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
+    # 配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
     service-url:
       defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
   instance:
-    #将ip地址注册到Eureka注册中心
+    # 将ip地址注册到Eureka注册中心
     prefer-ip-address: true
-    #该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
+    # 该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    #该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
+    # 该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
     lease-renewal-interval-in-seconds: 20
-    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
+    # Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
     lease-expiration-duration-in-seconds: 60
