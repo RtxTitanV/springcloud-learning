@@ -7,31 +7,31 @@ spring:
 
 eureka:
   client:
-    #服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
+    # 服务注册，是否将服务注册到Eureka注册中心，true：注册，false：不注册
     register-with-eureka: true
-    #服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
+    # 服务发现，是否从Eureka注册中心获取注册信息，true：获取，false：不获取
     fetch-registry: true
-    #配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
+    # 配置Eureka注册中心即Eureka服务端的地址，集群地址以,隔开
     service-url:
       defaultZone: http://rtxtitanv:rtxtitanv@eureka-server-01:8001/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-02:8002/eureka/,http://rtxtitanv:rtxtitanv@eureka-server-03:8003/eureka/
-    #从Eureka服务器获取注册表信息的间隔时间，单位秒，默认30秒
+    # 从Eureka服务器获取注册表信息的间隔时间，单位秒，默认30秒
     registry-fetch-interval-seconds: 20
-    #更新实例信息的变化到Eureka服务端的间隔时间，单位秒，默认30秒
+    # 更新实例信息的变化到Eureka服务端的间隔时间，单位秒，默认30秒
     instance-info-replication-interval-seconds: 20
-    #初始化实例信息到Eureka服务端的间隔时间，单位秒，默认40秒
+    # 初始化实例信息到Eureka服务端的间隔时间，单位秒，默认40秒
     initial-instance-info-replication-interval-seconds: 30
-    #询问Eureka Server信息变化的时间间隔，单位秒，默认300秒
+    # 询问Eureka Server信息变化的时间间隔，单位秒，默认300秒
     eureka-service-url-poll-interval-seconds: 200
-    #读取Eureka Server的超时时间，单位秒，默认5秒
+    # 读取Eureka Server的超时时间，单位秒，默认5秒
     eureka-server-connect-timeout-seconds: 10
-    #连接Eureka Server的超时时间，单位秒，默认8秒
+    # 连接Eureka Server的超时时间，单位秒，默认8秒
     eureka-server-read-timeout-seconds: 15
   instance:
-    #将ip地址注册到Eureka注册中心
+    # 将ip地址注册到Eureka注册中心
     prefer-ip-address: true
-    #该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
+    # 该服务实例在注册中心的唯一实例ID，${spring.cloud.client.ip-address}获取该服务实例ip
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    #该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
+    # 该服务实例向注册中心发送心跳间隔，单位秒，默认30秒
     lease-renewal-interval-in-seconds: 20
-    #Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
+    # Eureka注册中心在删除此实例之前收到最后一次心跳后的等待时间，单位秒，默认90秒
     lease-expiration-duration-in-seconds: 60
