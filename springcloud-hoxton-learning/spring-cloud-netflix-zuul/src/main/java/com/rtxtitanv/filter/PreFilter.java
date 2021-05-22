@@ -59,30 +59,30 @@ public class PreFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
-        //获取请求上下文
+        // 获取请求上下文
         RequestContext requestContext = RequestContext.getCurrentContext();
-        //获取请求对象
+        // 获取请求对象
         HttpServletRequest request = requestContext.getRequest();
         logger.info("method:{},url:{}", request.getMethod(), request.getRequestURL().toString());
 
-        //获取请求参数token的值
+        // 获取请求参数token的值
         String token = request.getParameter("token");
-        //token不为null，空串或空白字符串时进行路由转发，否则不进行路由转发
+        // token不为null，空串或空白字符串时进行路由转发，否则不进行路由转发
         if (StringUtils.isNotBlank(token)) {
             logger.info("存在token");
-            //对请求进行路由
+            // 对请求进行路由
             requestContext.setSendZuulResponse(true);
-            //设置响应状态码
+            // 设置响应状态码
             requestContext.setResponseStatusCode(200);
             requestContext.set("tokenIsExist", true);
             return null;
         } else {
             logger.warn("token不存在");
-            //不对请求进行路由
+            // 不对请求进行路由
             requestContext.setSendZuulResponse(false);
-            //设置响应状态码
+            // 设置响应状态码
             requestContext.setResponseStatusCode(401);
-            //获取响应对象
+            // 获取响应对象
             HttpServletResponse response = requestContext.getResponse();
             response.setContentType("application/json; charset=utf8");
             response.setCharacterEncoding("utf8");

@@ -60,12 +60,12 @@ public class ErrorFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
-        //获取请求上下文
+        // 获取请求上下文
         RequestContext requestContext = RequestContext.getCurrentContext();
-        //获取ZuulException
+        // 获取ZuulException
         ZuulException zuulException = this.findZuulException(requestContext.getThrowable());
         logger.error("系统异常拦截开始", zuulException);
-        //获取响应对象
+        // 获取响应对象
         HttpServletResponse response = requestContext.getResponse();
         response.setContentType("application/json; charset=utf8");
         response.setCharacterEncoding("utf8");

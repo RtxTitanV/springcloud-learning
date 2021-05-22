@@ -52,7 +52,7 @@ public class PostFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         RequestContext requestContext = RequestContext.getCurrentContext();
-        //判断token是否存在，token存在才进行过滤
+        // 判断token是否存在，token存在才进行过滤
         return (boolean) requestContext.get("tokenIsExist");
     }
 
@@ -63,38 +63,38 @@ public class PostFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
-        //获取请求上下文
+        // 获取请求上下文
         RequestContext requestContext = RequestContext.getCurrentContext();
-        //获取请求对象
+        // 获取请求对象
         HttpServletRequest request = requestContext.getRequest();
         logger.info("method:{},url:{}", request.getMethod(), request.getRequestURL().toString());
 
-        //获取请求参数username和password的值
+        // 获取请求参数username和password的值
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        //username和passsword正确则进行路由转发，否则不进行路由转发
+        // username和passsword正确则进行路由转发，否则不进行路由转发
         if (StringUtils.isNotBlank(username) && USERNAME.equals(username)
                 && StringUtils.isNotBlank(password) && PASSWORD.equals(password)) {
             logger.info("用户名密码正确");
-            //对请求进行路由
+            // 对请求进行路由
             requestContext.setSendZuulResponse(true);
-            //设置响应状态码
+            // 设置响应状态码
             requestContext.setResponseStatusCode(200);
             requestContext.set("isVerify", true);
             return null;
         } else {
             logger.warn("用户名或密码不正确");
-            //不对请求进行路由
+            // 不对请求进行路由
             requestContext.setSendZuulResponse(false);
-            //设置响应状态码
+            // 设置响应状态码
             requestContext.setResponseStatusCode(401);
-            //获取响应对象
+            // 获取响应对象
             HttpServletResponse response = requestContext.getResponse();
             response.setContentType("application/json; charset=utf8");
             response.setCharacterEncoding("utf8");
             OutputStream writer = null;
             try {
-                //避免 getWriter() has already been called for this response 问题
+                // 避免 getWriter() has already been called for this response 问题
                 writer = response.getOutputStream();
                 writer.write("用户名或密码不正确".getBytes());
             } catch (IOException ioException) {
