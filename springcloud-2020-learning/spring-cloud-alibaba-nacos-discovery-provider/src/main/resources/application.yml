@@ -7,17 +7,17 @@ spring:
   cloud:
     nacos:
       discovery:
-#        #nacos服务器地址
+#        # nacos服务器地址
 #        server-addr: 127.0.0.1:8848
-        #nacos服务器地址，nacos集群可以设置为nacos集群的域名:port
+        # nacos服务器地址，nacos集群可以设置为nacos集群的域名:port
         server-addr: nacos.cluster.test.com:80
-        #设置服务所处的分组，默认值为DEFAULT_GROUP
+        # 设置服务所处的分组，默认值为DEFAULT_GROUP
         group: DEV_GROUP
-        #设置服务所处的命名空间，通过命名空间的ID来指定命名空间，这里设置为命名空间dev
+        # 设置服务所处的命名空间，通过命名空间的ID来指定命名空间，这里设置为命名空间dev
         namespace: d8830907-76c9-4b18-a670-789f4290b8b5
-#        #设置集群名称，默认值为DEFAULT
+#        # 设置集群名称，默认值为DEFAULT
 #        cluster-name: ${CLUSTER_NAME:DEFAULT}
-        #自定义服务的元数据信息，使用Map格式配置
+        # 自定义服务的元数据信息，使用Map格式配置
         metadata:
           app.name: nacos-discovery-provider
           app.version: 1.0.0
