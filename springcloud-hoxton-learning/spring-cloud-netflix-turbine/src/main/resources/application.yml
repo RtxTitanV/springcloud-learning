@@ -38,7 +38,7 @@ eureka:
 #  combine-host-port: true
 #  # 被监控服务都配置相同context-path情况，common为配置的context-path
 #  # 被监控服务都没配置context-path需省略该配置
-#  #instanceUrlSuffix: common/actuator/hystrix.stream
+#  instanceUrlSuffix: common/actuator/hystrix.stream
 
 # 指定集群监控
 turbine:
