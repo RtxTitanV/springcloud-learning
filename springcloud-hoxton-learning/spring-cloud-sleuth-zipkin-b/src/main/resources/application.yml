@@ -11,7 +11,7 @@ spring:
         enabled: true
   sleuth:
     sampler:
-      # 指定sleuth的采样率，默认0.1，设置为1表示日志全量传递到服务端
+      # 指定sleuth的采样率，默认0.1，设置为1.0表示日志全量传递到服务端
       # 开发测试环境建议设置为1.0
       probability: 1.0
   zipkin:
