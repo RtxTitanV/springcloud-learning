@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface OpenFeignClient {
     /**
      * 声明式REST服务调用接口方法，调用服务eureka-client的/home
+     *
      * @return 调用eureka-client返回的结果
      */
     @GetMapping("/home")

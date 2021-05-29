@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface SleuthZipkinClient {
     /**
      * 声明式REST服务调用接口方法，调用服务sleuth-zipkin-a的/home
+     *
      * @return 调用sleuth-zipkin-a返回的结果
      */
     @GetMapping("/home")
@@ -22,6 +23,7 @@ public interface SleuthZipkinClient {
 
     /**
      * 声明式REST服务调用接口方法，调用服务sleuth-zipkin-a的/toSleuthZipkinB
+     *
      * @return 调用sleuth-zipkin-a返回的结果
      */
     @GetMapping("/toSleuthZipkinB")

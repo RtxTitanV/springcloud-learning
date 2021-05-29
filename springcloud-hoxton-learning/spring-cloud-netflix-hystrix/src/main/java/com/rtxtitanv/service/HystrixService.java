@@ -11,6 +11,7 @@ public interface HystrixService {
 
     /**
      * 调用eureka-client，测试hystrix服务降级
+     *
      * @return 调用eureka-client返回的结果
      */
     String hystrix();

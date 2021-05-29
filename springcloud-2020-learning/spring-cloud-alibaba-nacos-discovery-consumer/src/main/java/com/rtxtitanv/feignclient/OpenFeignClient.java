@@ -15,6 +15,7 @@ public interface OpenFeignClient {
 
     /**
      * 声明式REST服务调用接口方法，调用服务nacos-discovery-provider的/home
+     *
      * @return 调用nacos-discovery-provider返回的结果
      */
     @GetMapping("/home")

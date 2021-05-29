@@ -44,12 +44,8 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Override
     public Mono<String> consumerTest2() {
-        return webClientBuilder.baseUrl("http://nacos-discovery-provider")
-                .build()
-                .get()
-                .uri("/home")
-                .retrieve()
-                .bodyToMono(String.class);
+        return webClientBuilder.baseUrl("http://nacos-discovery-provider").build().get().uri("/home").retrieve()
+                               .bodyToMono(String.class);
     }
 
     @Override

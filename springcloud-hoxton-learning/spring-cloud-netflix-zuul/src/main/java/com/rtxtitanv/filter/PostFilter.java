@@ -29,6 +29,7 @@ public class PostFilter extends ZuulFilter {
 
     /**
      * 过滤器类型，有pre、routing、post、error四种
+     *
      * @return 代表过滤器类型的字符串
      */
     @Override
@@ -38,6 +39,7 @@ public class PostFilter extends ZuulFilter {
 
     /**
      * 过滤器执行顺序，数值越小优先级越高
+     *
      * @return 代表过滤器执行顺序的int值
      */
     @Override
@@ -47,6 +49,7 @@ public class PostFilter extends ZuulFilter {
 
     /**
      * 是否进行过滤
+     *
      * @return true：过滤，false：不过滤
      */
     @Override
@@ -58,6 +61,7 @@ public class PostFilter extends ZuulFilter {
 
     /**
      * 自定义的过滤器逻辑，当shouldFilter()返回true时会执行
+     *
      * @return Object
      * @throws ZuulException
      */
@@ -73,8 +77,8 @@ public class PostFilter extends ZuulFilter {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         // username和passsword正确则进行路由转发，否则不进行路由转发
-        if (StringUtils.isNotBlank(username) && USERNAME.equals(username)
-                && StringUtils.isNotBlank(password) && PASSWORD.equals(password)) {
+        if (StringUtils.isNotBlank(username) && USERNAME.equals(username) && StringUtils.isNotBlank(password)
+                && PASSWORD.equals(password)) {
             logger.info("用户名密码正确");
             // 对请求进行路由
             requestContext.setSendZuulResponse(true);

@@ -28,6 +28,7 @@ public class HystrixServiceImpl implements HystrixService {
 
     /**
      * 降级方法
+     *
      * @return 服务调用失败提示信息
      */
     private String hystrixFallBack() {

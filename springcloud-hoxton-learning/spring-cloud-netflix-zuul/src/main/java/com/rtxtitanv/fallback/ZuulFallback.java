@@ -23,6 +23,7 @@ public class ZuulFallback implements FallbackProvider {
 
     /**
      * 指定需要降级的服务，如果所有服务都支持降级，返回"*"或null
+     *
      * @return 需要降级的服务名
      */
     @Override
@@ -32,6 +33,7 @@ public class ZuulFallback implements FallbackProvider {
 
     /**
      * 自定义服务降级返回的内容
+     *
      * @param route route
      * @param cause cause
      * @return ClientHttpResponse

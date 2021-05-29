@@ -10,6 +10,7 @@ package com.rtxtitanv.service;
 public interface OpenfeignMonitoredService {
     /**
      * openfeign声明式REST服务调用测试，调用服务eureka-client的/home
+     *
      * @return 调用eureka-client返回的结果
      */
     String openFeign();

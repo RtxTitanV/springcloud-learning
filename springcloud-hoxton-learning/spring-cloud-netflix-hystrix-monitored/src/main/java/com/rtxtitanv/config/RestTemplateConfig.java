@@ -17,6 +17,7 @@ public class RestTemplateConfig {
 
     /**
      * 配置RestTemplate
+     *
      * @return RestTemplate
      */
     @LoadBalanced

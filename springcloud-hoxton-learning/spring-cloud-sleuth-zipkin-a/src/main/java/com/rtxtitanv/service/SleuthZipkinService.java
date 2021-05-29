@@ -10,12 +10,14 @@ package com.rtxtitanv.service;
 public interface SleuthZipkinService {
     /**
      * 调用服务sleuth-zipkin-b的/home
+     *
      * @return 调用sleuth-zipkin-b返回的结果
      */
     String toSleuthZipkinB();
 
     /**
      * 调用服务sleuth-zipkin-b的/toSleuthZipkinA
+     *
      * @return 调用sleuth-zipkin-b返回的结果
      */
     String toSleuthZipkinB2();

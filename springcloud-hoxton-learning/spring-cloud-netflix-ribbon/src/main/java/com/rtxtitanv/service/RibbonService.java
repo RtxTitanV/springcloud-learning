@@ -10,6 +10,7 @@ package com.rtxtitanv.service;
 public interface RibbonService {
     /**
      * ribbon负载均衡测试
+     *
      * @return 调用eureka-client返回的结果
      */
     String ribbon();
