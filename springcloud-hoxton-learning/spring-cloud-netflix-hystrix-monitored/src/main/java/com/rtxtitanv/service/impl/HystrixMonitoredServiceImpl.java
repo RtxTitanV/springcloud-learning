@@ -21,7 +21,7 @@ public class HystrixMonitoredServiceImpl implements HystrixMonitoredService {
     private RestTemplate restTemplate;
 
     @HystrixCommand(fallbackMethod = "hystrixFallBack", commandKey = "myHystrixCommand", groupKey = "myGroup",
-                    threadPoolKey = "myThreadPool")
+        threadPoolKey = "myThreadPool")
     @Override
     public String hystrix() {
         return restTemplate.getForObject("http://eureka-client/home", String.class);

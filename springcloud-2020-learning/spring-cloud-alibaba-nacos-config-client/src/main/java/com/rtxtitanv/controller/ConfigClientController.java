@@ -47,18 +47,18 @@ public class ConfigClientController {
     @GetMapping("/ext-config")
     public String getExtConfig() {
         return "common.host: " + commonHost + ", common.port: " + commonPort + ", common.username: " + commonUsername
-                + ", common.password: " + commonPassword;
+            + ", common.password: " + commonPassword;
     }
 
     @GetMapping("/share-config")
     public String getShareConfig() {
         return "share.username: " + shareUsername + ", share.password: " + sharePassword + ", share.hostname: "
-                + shareHostname + ", log.info: " + logLevel;
+            + shareHostname + ", log.info: " + logLevel;
     }
 
     @GetMapping("/priority")
     public String configPriority() {
         return "user.name: " + userName + ", user.age: " + userAge + ", user.pwd: " + userPwd + ", log.info: "
-                + logLevel;
+            + logLevel;
     }
 }

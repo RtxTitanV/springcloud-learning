@@ -56,7 +56,7 @@ public class PostFilter extends ZuulFilter {
     public boolean shouldFilter() {
         RequestContext requestContext = RequestContext.getCurrentContext();
         // 判断token是否存在，token存在才进行过滤
-        return (boolean) requestContext.get("tokenIsExist");
+        return (boolean)requestContext.get("tokenIsExist");
     }
 
     /**
@@ -78,7 +78,7 @@ public class PostFilter extends ZuulFilter {
         String password = request.getParameter("password");
         // username和passsword正确则进行路由转发，否则不进行路由转发
         if (StringUtils.isNotBlank(username) && USERNAME.equals(username) && StringUtils.isNotBlank(password)
-                && PASSWORD.equals(password)) {
+            && PASSWORD.equals(password)) {
             logger.info("用户名密码正确");
             // 对请求进行路由
             requestContext.setSendZuulResponse(true);

@@ -98,15 +98,15 @@ public class ErrorFilter extends ZuulFilter {
     private ZuulException findZuulException(Throwable throwable) {
 
         if (throwable.getCause() instanceof ZuulRuntimeException) {
-            return (ZuulException) throwable.getCause().getCause();
+            return (ZuulException)throwable.getCause().getCause();
         }
 
         if (throwable.getCause() instanceof ZuulException) {
-            return (ZuulException) throwable.getCause();
+            return (ZuulException)throwable.getCause();
         }
 
         if (throwable instanceof ZuulException) {
-            return (ZuulException) throwable;
+            return (ZuulException)throwable;
         }
         return new ZuulException(throwable, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, null);
     }
